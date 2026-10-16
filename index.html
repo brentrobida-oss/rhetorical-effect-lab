@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rhetorical Effect Lab</title>
+<meta name="description" content="AP Lang evidence coach: introduce, quote, attribute, analyze; scored 0 to 4 on Row B.">
+<meta name="color-scheme" content="light dark">
+<style>html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+  /* Layout: a writing desk. The four-step stack on the left, the marked-up page and score pinned on the right; one column under 860px. */
+  :root {
+    --paper: #fffcf5; --paper-2: #f7f1e3; --ink: #1c1915; --ink-2: #625a4c; --rule: #e6dcc6;
+    --hi-yellow: #ffe64a; --hi-pink: #ff8ec2; --hi-green: #8ff0a0; --hi-blue: #8ad2ff; --hi-orange: #ffb84d;
+    --accent: #3b2fd6; --accent-ink: #ffffff;
+    --ok: #1b8a4c; --warn: #c0661a; --bad: #c62450; --gold: #9a6b00; --lvl0: #8a8275;
+    --mark-alpha: 62%;
+    --font-display: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+    --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --font-mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #15171d; --paper-2: #1d2028; --ink: #f3eee2; --ink-2: #b3ab9b; --rule: #30343e;
+      --hi-yellow: #d7c200; --hi-pink: #ff6eb0; --hi-green: #5ad87a; --hi-blue: #5bbcff; --hi-orange: #ffa32e;
+      --accent: #a099ff; --accent-ink: #13112b;
+      --ok: #4ccf80; --warn: #f0a050; --bad: #ff6b8e; --gold: #e6b422; --lvl0: #8c8779;
+      --mark-alpha: 42%;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #15171d; --paper-2: #1d2028; --ink: #f3eee2; --ink-2: #b3ab9b; --rule: #30343e;
+    --hi-yellow: #d7c200; --hi-pink: #ff6eb0; --hi-green: #5ad87a; --hi-blue: #5bbcff; --hi-orange: #ffa32e;
+    --accent: #a099ff; --accent-ink: #13112b;
+    --ok: #4ccf80; --warn: #f0a050; --bad: #ff6b8e; --gold: #e6b422; --lvl0: #8c8779;
+    --mark-alpha: 42%;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: var(--font-body); font-size: 17px; line-height: 1.5;
+    padding-block: 0 56px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.1; }
+  p { margin: 0; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+
+  /* Header */
+  .top { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: flex-end; justify-content: space-between; padding-block: 26px 18px; border-bottom: 3px solid var(--ink); }
+  .brand { display: flex; gap: 14px; align-items: center; min-width: 0; }
+  .mark { width: 46px; height: 46px; flex: none; display: grid; gap: 4px; padding: 7px; background: var(--ink); border-radius: 10px; }
+  .mark i { display: block; height: 100%; border-radius: 3px; transform: skewX(-12deg); }
+  .mark i:nth-child(1) { background: var(--hi-yellow); }
+  .mark i:nth-child(2) { background: var(--hi-pink); width: 78%; }
+  .mark i:nth-child(3) { background: var(--hi-blue); width: 60%; }
+  .brand h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 800; letter-spacing: -0.02em; }
+  .brand .sub { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin-top: 2px; }
+  .who { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .who label { display: flex; flex-direction: column; gap: 4px; font-family: var(--font-display); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+  .who input, .who select { min-width: 170px; }
+
+  /* Fields */
+  input, select, textarea {
+    width: 100%; background: var(--paper-2); border: 2px solid var(--rule); border-radius: 10px;
+    padding: 10px 12px; font-size: 17px; line-height: 1.4; transition: border-color .15s, box-shadow .15s;
+  }
+  textarea { resize: vertical; min-height: 3.2em; font-family: var(--font-body); }
+  input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible {
+    outline: none; border-color: var(--ink); box-shadow: 0 0 0 4px color-mix(in oklab, var(--hi, var(--accent)) 55%, transparent);
+  }
+  ::placeholder { color: var(--ink-2); opacity: .75; }
+
+  /* The two columns */
+  .lab { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 6fr); gap: 28px; padding-block: 22px; align-items: start; }
+  @media (max-width: 860px) { .lab { grid-template-columns: 1fr; } }
+  .build { display: grid; gap: 18px; min-width: 0; }
+  .read { display: grid; gap: 16px; min-width: 0; }
+  @media (min-width: 861px) { .read { position: sticky; top: calc(12px + env(safe-area-inset-top, 0px)); } }
+
+  /* Steps: each carries its own highlighter color in --hi */
+  .step { border: 2px solid var(--rule); border-radius: 14px; padding: 14px 16px 16px; background: var(--paper); display: grid; gap: 10px; }
+  .step-head { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+  .tab { font-family: var(--font-display); font-weight: 800; font-size: 19px; letter-spacing: -0.01em; padding: 1px 8px; border-radius: 5px;
+    background: color-mix(in oklab, var(--hi) var(--mark-alpha), transparent); }
+  .hint { color: var(--ink-2); font-size: 15px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .row .wide { grid-column: 1 / -1; }
+  @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
+  label.f { display: grid; gap: 5px; font-family: var(--font-display); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); min-width: 0; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .chip { font-family: var(--font-mono); font-size: 12.5px; padding: 3px 9px; border-radius: 999px; border: 1.5px solid var(--rule); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .chip.good { border-color: var(--ok); color: var(--ok); }
+  .chip.warn { border-color: var(--warn); color: var(--warn); }
+  .chip.bad { border-color: var(--bad); color: var(--bad); }
+  .template { font-size: 15px; color: var(--ink-2); border-left: 3px solid color-mix(in oklab, var(--hi) 80%, transparent); padding-left: 10px; }
+  .template b { color: var(--ink); font-weight: 600; }
+
+  /* Buttons */
+  .btn { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .01em; border: 2px solid var(--ink); background: var(--paper); color: var(--ink); border-radius: 999px; padding: 7px 14px; cursor: pointer; transition: transform .08s, background .15s; }
+  .btn:hover { background: var(--paper-2); }
+  .btn:active { transform: translateY(1px); }
+  .btn.primary { background: var(--ink); color: var(--paper); }
+  .btn.primary:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .btn.small { font-size: 13px; padding: 5px 11px; }
+  .btn.hi { border-color: transparent; background: color-mix(in oklab, var(--hi) var(--mark-alpha), transparent); }
+  .btn.hi:hover { background: color-mix(in oklab, var(--hi) 85%, transparent); }
+
+  /* The page on the right */
+  .page { background: var(--paper-2); border-radius: 14px; padding: 16px 18px 18px; display: grid; gap: 10px; }
+  .page-head { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline; justify-content: space-between; }
+  .page h2 { font-size: 18px; font-weight: 800; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-family: var(--font-display); font-size: 12px; color: var(--ink-2); }
+  .legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 5px; }
+  .legend .l-effect::before { background: color-mix(in oklab, var(--hi-green) 80%, transparent); }
+  .legend .l-choice::before { background: color-mix(in oklab, var(--hi-blue) 80%, transparent); }
+  .legend .l-announce::before { background: color-mix(in oklab, var(--hi-pink) 85%, transparent); }
+  .legend .l-nudge::before { background: color-mix(in oklab, var(--hi-orange) 85%, transparent); }
+  .preview { font-size: 18px; line-height: 1.6; min-height: 4.5em; overflow-wrap: anywhere; }
+  .preview .empty { color: var(--ink-2); font-style: italic; }
+  .m { padding: 0 .12em; border-radius: .25em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .m-effect { background: color-mix(in oklab, var(--hi-green) var(--mark-alpha), transparent); }
+  .m-choice { background: color-mix(in oklab, var(--hi-blue) var(--mark-alpha), transparent); }
+  .m-announce { background: color-mix(in oklab, var(--hi-pink) var(--mark-alpha), transparent); text-decoration: underline wavy var(--bad); text-underline-offset: 3px; }
+  .m-nudge { background: color-mix(in oklab, var(--hi-orange) var(--mark-alpha), transparent); text-decoration: underline dotted var(--warn); text-underline-offset: 3px; }
+  .example-badge { font-family: var(--font-display); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); border: 1.5px dashed var(--ink-2); border-radius: 999px; padding: 2px 9px; }
+
+  /* Score */
+  .score { display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: center; border: 2px solid var(--ink); border-radius: 14px; padding: 14px 16px; }
+  .ring { --pct: 0; --c: var(--lvl0); width: 96px; height: 96px; border-radius: 50%; display: grid; place-items: center; position: relative; font-family: var(--font-display);
+    background: conic-gradient(var(--c) calc(var(--pct) * 1%), var(--rule) 0); transition: background .3s; }
+  .ring::before { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: var(--paper); }
+  .ring span { position: relative; font-size: 40px; font-weight: 800; line-height: 1; color: var(--c); font-variant-numeric: tabular-nums; }
+  .ring small { position: relative; font-size: 12px; color: var(--ink-2); font-family: var(--font-mono); margin-top: 2px; }
+  .ring[data-level="1"] { --c: var(--bad); } .ring[data-level="2"] { --c: var(--warn); } .ring[data-level="3"] { --c: var(--ok); } .ring[data-level="4"] { --c: var(--gold); }
+  .eyebrow { font-family: var(--font-display); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+  .score h3 { font-size: 21px; font-weight: 800; margin-top: 2px; }
+  .score .desc { font-size: 14.5px; color: var(--ink-2); margin-top: 4px; }
+  .next { margin-top: 8px; font-family: var(--font-display); font-weight: 700; font-size: 15px; padding: 6px 10px; border-radius: 8px; background: color-mix(in oklab, var(--hi-yellow) var(--mark-alpha), transparent); }
+  @media (max-width: 420px) { .score { grid-template-columns: 1fr; justify-items: start; } }
+
+  .checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 15.5px; }
+  .checks li { display: flex; gap: 10px; align-items: baseline; }
+  .checks .dot { flex: none; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-mono); font-size: 12px; border: 2px solid var(--rule); color: var(--ink-2); transform: translateY(3px); }
+  .checks li.ok .dot { background: var(--ok); border-color: var(--ok); color: #fff; }
+  .flags { display: grid; gap: 8px; }
+  .flag { border-left: 4px solid var(--bad); background: color-mix(in oklab, var(--hi-pink) 18%, transparent); border-radius: 0 10px 10px 0; padding: 8px 12px; font-size: 15px; display: grid; gap: 2px; }
+  .flag.minor { border-left-color: var(--warn); background: color-mix(in oklab, var(--hi-orange) 18%, transparent); }
+  .flag b { font-family: var(--font-display); font-weight: 700; }
+  .flag .q { font-style: italic; color: var(--ink-2); }
+  .flag .fix { color: var(--ink); }
+  .flags:empty + .fine { margin-top: 0; }
+  .fine { font-size: 13.5px; color: var(--ink-2); }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%) translateY(20px); background: var(--ink); color: var(--paper); font-family: var(--font-display); font-weight: 700; padding: 9px 16px; border-radius: 999px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Rubric */
+  .rubric { border-top: 2px solid var(--rule); padding-block: 18px 0; }
+  .rubric summary { cursor: pointer; font-family: var(--font-display); font-weight: 800; font-size: 17px; }
+  .rubric ol { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; counter-reset: lvl -1; }
+  .rubric li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; font-size: 15px; }
+  .rubric li::before { counter-increment: lvl; content: counter(lvl); font-family: var(--font-display); font-weight: 800; font-size: 20px; width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; background: var(--paper-2); color: var(--ink); }
+  .rubric li b { font-family: var(--font-display); }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div>
+        <h1>Rhetorical Effect Lab</h1>
+        <p class="sub">AP English Language &middot; Scheck Hillel Community School</p>
+      </div>
+    </div>
+    <div class="who">
+      <label>Name <input id="name" autocomplete="name" placeholder="Your name"></label>
+      <label>Period
+        <select id="period">
+          <option value="">Choose</option>
+          <option>Period A</option><option>Period B</option><option>Period C</option><option>Period D</option>
+          <option>Period E</option><option>Period F</option><option>Period G</option><option>Period H</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main class="lab">
+    <form class="build" id="form" autocomplete="off">
+      <section class="step" style="--hi: var(--hi-green)">
+        <div class="step-head"><span class="tab">The text</span><p class="hint">Who wrote it, and what it is.</p></div>
+        <div class="row">
+          <label class="f">Author <input id="author" placeholder="Frederick Douglass"></label>
+          <label class="f">Title <input id="title" placeholder="What to the Slave Is the Fourth of July?"></label>
+          <label class="f wide">Page or line (optional) <input id="cite" placeholder="12, or lines 4 to 6"></label>
+        </div>
+      </section>
+
+      <section class="step" style="--hi: var(--hi-blue)">
+        <div class="step-head"><span class="tab">Introduce</span><p class="hint">One lead-in: who is speaking, to whom, at what moment. Stop mid-sentence so the quote finishes it.</p></div>
+        <label class="f">Lead-in <textarea id="intro" rows="2" placeholder="Turning the holiday against the celebrating crowd, Douglass tells them the Fourth of July is"></textarea></label>
+      </section>
+
+      <section class="step" style="--hi: var(--hi-yellow)">
+        <div class="step-head"><span class="tab">Quote</span><p class="hint">Only the words doing the work. At least 3; 3 to 5 is the sweet spot.</p></div>
+        <label class="f">Exact words <input id="quote" placeholder="yours, not mine"></label>
+        <div class="meta"><span class="chip" id="quoteChip">0 words</span><span class="chip" id="citeChip">cites: (Author)</span></div>
+      </section>
+
+      <section class="step" style="--hi: var(--hi-pink)">
+        <div class="step-head"><span class="tab">Analyze</span><p class="hint">Two full sentences. Argue the effect; never announce it. Every &ldquo;This&rdquo; takes a noun.</p></div>
+        <p class="template"><b>Sentence 1:</b> [Writer]&rsquo;s [choice] does [what], and <b>this [noun] produces the rhetorical effect of</b> [effect] because [reason]. <b>Sentence 2:</b> which [does what] to the audience, so that [the writer&rsquo;s purpose].</p>
+        <label class="f">Your two sentences <textarea id="analysis" rows="5" placeholder="Douglass&rsquo;s antithesis splits one sentence into two owners, and this split produces the rhetorical effect of..."></textarea></label>
+        <div class="meta">
+          <span class="chip" id="sentChip">0 sentences</span>
+          <button type="button" class="btn small hi" id="insertPhrase">Insert &ldquo;this ___ produces the rhetorical effect of&rdquo;</button>
+        </div>
+      </section>
+    </form>
+
+    <aside class="read">
+      <div class="page">
+        <div class="page-head">
+          <h2>Your paragraph <span class="example-badge" id="exampleBadge" hidden>Example</span></h2>
+          <div class="legend"><span class="l-effect">effect phrase</span><span class="l-choice">choice named</span><span class="l-announce">announcing</span><span class="l-nudge">nudge</span></div>
+        </div>
+        <p class="preview" id="preview"></p>
+      </div>
+
+      <div class="score" aria-live="polite">
+        <div class="ring" id="ring" data-level="0"><span id="scoreNum">0</span><small>of 4</small></div>
+        <div>
+          <p class="eyebrow">Coach score &middot; AP rubric Row B</p>
+          <h3 id="levelTitle">Restates</h3>
+          <p class="desc" id="levelDesc"></p>
+          <p class="next" id="next"></p>
+        </div>
+      </div>
+
+      <ul class="checks" id="checks"></ul>
+      <div class="flags" id="flags"></div>
+      <p class="fine">Your teacher&rsquo;s grade is final. This coach reads patterns, not meaning, so a 4 here means your sentences have the right shape and depth. It recognizes its own examples, so the thinking has to be yours.</p>
+
+      <div class="actions">
+        <button type="button" class="btn primary" id="copyPara">Copy paragraph</button>
+        <button type="button" class="btn" id="copyReport">Copy report</button>
+        <button type="button" class="btn" id="loadStrong">Show a 4</button>
+        <button type="button" class="btn" id="loadWeak">Show a 1</button>
+        <button type="button" class="btn" id="clearAll">Start mine</button>
+      </div>
+    </aside>
+  </main>
+
+  <details class="rubric">
+    <summary>The rubric behind the score (AP Lang rhetorical analysis, Row B: Evidence and Commentary)</summary>
+    <ol>
+      <li><span><b>Restates.</b> Repeats the quote, restates the thesis, or offers nothing relevant.</span></li>
+      <li><span><b>Summarizes.</b> Evidence is mostly general; commentary summarizes it without explaining how it supports the claim.</span></li>
+      <li><span><b>Explains some.</b> Specific, relevant evidence; explains how some of it relates to the argument, but the line of reasoning is missing or faulty.</span></li>
+      <li><span><b>Argues a line of reasoning.</b> Specific evidence supports the claims; explains how at least one rhetorical choice contributes to the writer&rsquo;s argument, purpose, or message.</span></li>
+      <li><span><b>Argues with multiple choices.</b> Consistently explains how the evidence supports the reasoning and how more than one rhetorical choice contributes to the writer&rsquo;s purpose.</span></li>
+    </ol>
+  </details>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="coach.js"></script>
+<script>
+(function () {
+  'use strict';
+  const ids = ['name', 'period', 'author', 'title', 'cite', 'intro', 'quote', 'analysis'];
+  const F = {};
+  ids.forEach(id => { F[id] = document.getElementById(id); });
+  const $ = id => document.getElementById(id);
+  const KEY = 'rel-draft-v1';
+
+  const EXAMPLES = Coach.EXAMPLES;
+
+  let isExample = false;
+
+  function data() {
+    const d = {};
+    ids.forEach(id => { d[id] = F[id].value; });
+    return d;
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  function markup(text, r) {
+    const spans = [];
+    r.effectMatches.forEach(m => spans.push({ ...m, cls: 'm-effect', title: 'Effect phrase' }));
+    r.choiceMatches.forEach(m => spans.push({ ...m, cls: 'm-choice', title: 'Rhetorical choice named' }));
+    r.flags.forEach(f => f.matches.forEach(m => spans.push({ ...m, cls: f.weight === 'major' ? 'm-announce' : 'm-nudge', title: f.label })));
+    spans.sort((a, b) => a.index - b.index || b.length - a.length);
+    let out = '', pos = 0;
+    for (const s of spans) {
+      if (s.index < pos) continue;
+      out += esc(text.slice(pos, s.index));
+      out += '<mark class="m ' + s.cls + '" title="' + esc(s.title) + '">' + esc(text.slice(s.index, s.index + s.length)) + '</mark>';
+      pos = s.index + s.length;
+    }
+    return out + esc(text.slice(pos));
+  }
+
+  function render() {
+    const d = data();
+    const r = Coach.analyze(d, { isExample });
+
+    const evidence = Coach.buildParagraph({ ...d, analysis: '' });
+    const analysis = d.analysis.trim();
+    if (!evidence && !analysis) {
+      $('preview').innerHTML = '<span class="empty">Your introduced quote and two sentences will appear here as you type.</span>';
+    } else {
+      $('preview').innerHTML = esc(evidence) + (evidence && analysis ? ' ' : '') + markup(analysis, r);
+    }
+
+    const qc = $('quoteChip');
+    qc.textContent = r.quoteWords + (r.quoteWords === 1 ? ' word' : ' words') + ({ empty: '', short: ' · need at least 3', ideal: ' · sweet spot', long: ' · fine, could be tighter', toolong: ' · over 25, trim' }[r.quoteStatus]);
+    qc.className = 'chip ' + ({ empty: '', short: 'bad', ideal: 'good', long: 'warn', toolong: 'bad' }[r.quoteStatus]);
+    const cite = Coach.citation(d);
+    $('citeChip').textContent = cite ? 'cites: (' + cite + ')' : 'cites: add the author';
+
+    const sc = $('sentChip');
+    sc.textContent = r.sentenceCount + (r.sentenceCount === 1 ? ' sentence' : ' sentences') + (r.sentenceCount === 2 ? ' · exactly' : r.sentenceCount > 2 ? ' · trim to two' : '');
+    sc.className = 'chip ' + (r.sentenceCount === 2 ? 'good' : r.sentenceCount > 2 ? 'warn' : '');
+
+    const ring = $('ring');
+    ring.dataset.level = String(r.score);
+    ring.style.setProperty('--pct', String(r.score * 25));
+    $('scoreNum').textContent = String(r.score);
+    $('levelTitle').textContent = r.level.title;
+    $('levelDesc').textContent = r.level.desc;
+    $('next').textContent = r.next;
+
+    $('checks').innerHTML = r.checks.map(c => '<li class="' + (c.ok ? 'ok' : '') + '"><span class="dot">' + (c.ok ? '✓' : '') + '</span><span>' + esc(c.text) + '</span></li>').join('');
+
+    $('flags').innerHTML = r.flags.map(f => {
+      const quoted = f.matches.length ? '<span class="q">' + f.matches.slice(0, 3).map(m => '“' + esc(m.text) + '”').join(', ') + '</span>' : '';
+      return '<div class="flag ' + f.weight + '"><b>' + esc(f.label) + '</b>' + quoted + '<span class="fix">' + esc(f.fix) + '</span></div>';
+    }).join('');
+
+    $('exampleBadge').hidden = !isExample;
+    save(d);
+    return r;
+  }
+
+  function save(d) {
+    try { localStorage.setItem(KEY, JSON.stringify({ ...d, isExample })); } catch (e) { /* storage blocked; the page still works */ }
+  }
+  function load() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return false;
+      const d = JSON.parse(raw);
+      ids.forEach(id => { if (typeof d[id] === 'string') F[id].value = d[id]; });
+      isExample = Boolean(d.isExample);
+      return true;
+    } catch (e) { return false; }
+  }
+  function fill(ex, markExample) {
+    Object.keys(ex).forEach(id => { if (F[id]) F[id].value = ex[id]; });
+    isExample = markExample;
+    render();
+  }
+
+  let timer;
+  ids.forEach(id => F[id].addEventListener('input', () => {
+    if (isExample && id !== 'name' && id !== 'period') isExample = false;
+    clearTimeout(timer); timer = setTimeout(render, 120);
+  }));
+  $('form').addEventListener('submit', e => e.preventDefault());
+
+  $('insertPhrase').addEventListener('click', () => {
+    const ta = F.analysis;
+    const head = 'this ', tail = ' produces the rhetorical effect of ';
+    const start = ta.selectionStart, end = ta.selectionEnd;
+    const before = ta.value.slice(0, start), after = ta.value.slice(end);
+    const lead = before && !/\s$/.test(before) ? ' ' : '';
+    ta.value = before + lead + head + tail + after;
+    const caret = (before + lead + head).length;  // the caret sits where the noun goes
+    ta.focus(); ta.setSelectionRange(caret, caret);
+    isExample = false;
+    render();
+  });
+
+  let toastTimer;
+  function toast(msg) {
+    const t = $('toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 1600);
+  }
+  function copy(text, done) {
+    const fallback = () => {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      toast(ok ? done : 'Select the paragraph and copy it by hand');
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => toast(done), fallback);
+    } else fallback();
+  }
+
+  $('copyPara').addEventListener('click', () => {
+    const r = Coach.analyze(data(), { isExample });
+    if (!r.paragraph) { toast('Nothing to copy yet'); return; }
+    copy(r.paragraph, 'Paragraph copied');
+  });
+  $('copyReport').addEventListener('click', () => {
+    const d = data();
+    const r = Coach.analyze(d, { isExample });
+    const lines = [
+      [d.name || 'Student', d.period].filter(Boolean).join(' · '),
+      [d.author, d.title ? '“' + d.title + '”' : ''].filter(Boolean).join(', '),
+      '',
+      r.paragraph || '(no paragraph yet)',
+      '',
+      'Coach score: ' + r.score + ' of 4 (' + r.level.title + ')',
+      ...r.checks.map(c => (c.ok ? '✓ ' : '○ ') + c.text),
+    ];
+    if (r.flags.length) {
+      lines.push('', 'Rewrite:');
+      r.flags.forEach(f => lines.push('• ' + f.label + (f.matches.length ? ': ' + f.matches.map(m => '“' + m.text + '”').join(', ') : '') + '. ' + f.fix));
+    }
+    copy(lines.join('\n'), 'Report copied');
+  });
+  $('loadStrong').addEventListener('click', () => { fill(EXAMPLES.strong, true); toast('A level-4 paragraph'); });
+  $('loadWeak').addEventListener('click', () => { fill(EXAMPLES.weak, true); toast('A level-1 paragraph: all announcing'); });
+  $('clearAll').addEventListener('click', () => {
+    ['author', 'title', 'cite', 'intro', 'quote', 'analysis'].forEach(id => { F[id].value = ''; });
+    isExample = false; render(); F.author.focus();
+  });
+
+  function start(snap) {
+    if (snap && snap.draft) {
+      ids.forEach(id => { if (typeof snap.draft[id] === 'string') F[id].value = snap.draft[id]; });
+      isExample = Boolean(snap.isExample);
+    } else if (!load()) {
+      fill(EXAMPLES.strong, true);
+    }
+    render();
+  }
+  start(null);
+})();
+</script>
+
+</body></html>
