@@ -1,0 +1,5 @@
+.claude/
+.clawness/
+.claudeignore
+node_modules/
+.DS_Store
