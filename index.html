@@ -1,5 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Rhetorical Effect Lab</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%231c1915%27/%3E%3Crect x=%276%27 y=%277%27 width=%2720%27 height=%275%27 rx=%272%27 fill=%27%23ffe64a%27/%3E%3Crect x=%276%27 y=%2714%27 width=%2715%27 height=%275%27 rx=%272%27 fill=%27%23ff8ec2%27/%3E%3Crect x=%276%27 y=%2721%27 width=%2711%27 height=%275%27 rx=%272%27 fill=%27%238ad2ff%27/%3E%3C/svg%3E">
+<meta name="description" content="AP Lang evidence coach: introduce, quote, attribute, analyze; scored 0 to 4 on Row B.">
+<meta name="color-scheme" content="light dark">
+<style>html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <style>
   /* Layout: a writing desk. The four-step stack on the left, the marked-up page and score pinned on the right; one column under 860px. */
@@ -165,6 +173,8 @@
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
+</head>
+<body>
 <div class="wrap">
   <header class="top">
     <div class="brand">
@@ -444,10 +454,8 @@
     }
     render();
   }
-  if (window.claude && window.claude.hot && window.claude.hot.snapshot) {
-    window.claude.hot.snapshot(() => ({ draft: data(), isExample }));
-  }
-  if (window.claude && window.claude.hot && window.claude.hot.ready) window.claude.hot.ready(start);
-  else start((window.claude && window.claude.hot && window.claude.hot.data) || null);
+  start(null);
 })();
 </script>
+
+</body></html>
