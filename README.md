@@ -17,7 +17,7 @@ An evidence coach for AP English Language students at Scheck Hillel Community Sc
 - No announcing phrases: "this quote shows," "uses X to show," "this is an example of," wrap-ups
 - No pasting the built-in examples (scores 0)
 
-Drafts stay in the student's own browser. Nothing is sent anywhere. The coach reads patterns, not meaning; the teacher's grade is final.
+Drafts stay in the student's own browser. Nothing a student types is sent anywhere. A GoatCounter visit counter records only that the page was opened, so the teacher can see whether the class used it (dashboard: https://brentrobida.goatcounter.com). The coach reads patterns, not meaning; the teacher's grade is final.
 
 ## Files
 
